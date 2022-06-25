@@ -1,7 +1,7 @@
-## Project Setup
+## Setup
 
 
-VUE
+[VUE]
 1. git clone https://github.com/cholewakrzysztof/smartbees-checkout-vue-poprawione
 2. cd smartbees-checkout-vue-poprawione
 3. npm install 
