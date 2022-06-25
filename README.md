@@ -1,40 +1,37 @@
-# vue-project
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
 ## Project Setup
 
-```sh
-npm install
-```
 
-### Compile and Hot-Reload for Development
+VUE
+1.npm install
+2.npm run dev
 
-```sh
-npm run dev
-```
+TESTY JEDNOSTKOWE PHPUNIT
+1. Włączyć Git Bash
+2. Prejść do folderu ze sklonowanym repozytorium "smart-bees-checkout-phpunit-poprawione"
+3. komenda: vendor/bin/phpunit
 
-### Type-Check, Compile and Minify for Production
+WSPÓŁPRACA Z BAZĄ DANYCH
+1. zaimportować bazę checkout.sql z nazwą "checkout"
+2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostęne pod ścieżkami:
+    -"http://localhost/send_order.php"  
+    -"http://localhost/discount_check.php" 
 
-```sh
-npm run build
-```
+Domeny reCAPTCHA:
+    smartbees-zadanie.local
+    localhost
+Klucz reCAPTCHA:
+    6Lfxfl0gAAAAAOIupaOkUkeTBFhY2qGXxyv8MVsJ
+
+W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
+W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
+
+Kody rabatowe (Wpływają jedynie na cenę produktu):
+    Aktywny: AB-123-456
+    Nieaktywny: CD-789-123
+
+Wykorzystane technologie:
+1. Vue.js 3
+2. Baza danych MariaDB
+3. PHP 7.3.30
+4. reCAPTCHA Google v3
+5. PHPUnit 9
