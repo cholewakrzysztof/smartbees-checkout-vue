@@ -2,13 +2,17 @@
 
 
 VUE
-1. npm install 
-2. npm run dev
+1. git clone https://github.com/cholewakrzysztof/smartbees-checkout-vue-poprawione
+2. cd smartbees-checkout-vue-poprawione
+3. npm install 
+4. npm run dev
 
 TESTY JEDNOSTKOWE PHPUNIT
-1. Włączyć Git Bash
-2. Prejść do folderu ze sklonowanym repozytorium "smart-bees-checkout-phpunit-poprawione"
-3. komenda: vendor/bin/phpunit
+1. git clone https://github.com/cholewakrzysztof/smart-bees-checkout-phpunit-poprawione
+2. do tego samego folderu skopiować plik "send_order.php"
+3. Włączyć Git Bash
+4. cd smart-bees-checkout-phpunit-poprawione
+5. vendor/bin/phpunit
 
 WSPÓŁPRACA Z BAZĄ DANYCH
 1. zaimportować bazę checkout.sql z nazwą "checkout"
