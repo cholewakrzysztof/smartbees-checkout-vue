@@ -4,7 +4,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-        isDisabled : true,
+        recaptchaDisabled : true,
         another_location : false,
         create_account : false,
         newsletter : false,
@@ -14,6 +14,9 @@ export default {
         text : "",
         address : "",
         another_address : "",
+        password :"",
+        repeat_password : "",
+        login:"",
 
         name : "",
         surname : "",
@@ -59,6 +62,25 @@ export default {
             comment : ""
         },
 
+        error_list:{
+            name : false,
+            surname : false,
+            country : false,
+            street : false,
+            house_number : false,
+            zip_code : false,
+            city : false,
+            another_country : false,
+            another_street : false,
+            another_house_number : false,
+            another_zip_code : false,
+            another_city : false,
+            phone: false,
+            comment : false,
+            password:false,
+            login:false,
+        },
+
         errors : [],
         generated_code : "",
     }
@@ -88,7 +110,7 @@ export default {
           this.total = (this.base*((100-this.discount)/100))+this.deliver;
       },
       myRecaptchaMethod: function(response) {
-        this.isDisabled=false;
+        this.recaptchaDisabled=false;
       },
       decodeAddress(){
         this.another_street = "";
@@ -147,6 +169,24 @@ export default {
               this.discount_result = "Wystąpił nieznany błąd";
           }
       },
+      clearErrorList(){
+            this.error_list.name = false;
+            this.error_list.surname = false;
+            this.error_list.country = false;
+            this.error_list.street = false;
+            this.error_list.house_number = false;
+            this.error_list.zip_code = false;
+            this.error_list.city = false;
+            this.error_list.another_country = false;
+            this.error_list.another_street = false;
+            this.error_list.another_house_number = false;
+            this.error_list.another_zip_code = false;
+            this.error_list.another_city = false;
+            this.error_list.phone= false;
+            this.error_list.comment = false;
+            this.error_list.password= false;
+            this.error_list.login= false;
+      },
       sendOrder(){
         this.buildOrder();
         this.generated_code = "";
@@ -192,8 +232,29 @@ export default {
       checkForm(){
             let isOk = true;
 
+            this.clearErrorList();
+
             this.errors = [];
-            if(this.isDisabled){
+            if(this.create_account){
+                if(this.login.length<5){
+                    isOk = false;
+                    this.errors.push("Login musi mieć co najmniej 5 znaków"); 
+                    this.error_list.login=true; 
+                }
+                if(this.password!=this.repeat_password){
+                    isOk = false;
+                    this.errors.push("Hasła muszą być takie same");   
+                     this.error_list.password=true;
+                }else{
+                    if(this.password.length<8){
+                        isOk = false;
+                        this.errors.push("Hasło musi mieć co najmniej 8 znaków"); 
+                         this.error_list.password=true;
+                    }
+                }
+            }
+            
+            if(this.recaptchaDisabled){
                 isOk = false;
                 this.errors.push("Zaakceptuj reCaptche");   
             }
@@ -211,77 +272,73 @@ export default {
             }
             if(this.another_location){
                 if(this.another_country=="")
-                    {isOk =false;this.errors.push("Wybierz kraj");}
-                if(this.another_street=="")
-                    {isOk =false;this.errors.push("Podaj ulicę według wzorca: ulica,numer domu");}
-                if(this.another_house_number=="")
-                    {isOk =false;this.errors.push("Podaj numer domu według wzorca: ulica,numer domu");}
+                    {isOk =false;this.errors.push("Wybierz kraj dla dostawy");this.error_list.another_country=true;}
+                if(this.another_street==""||this.another_house_number=="")
+                    {isOk =false;this.errors.push("Podaj ulicę oraz numer domu dla dostawy, według wzorca: ulica,numer domu");this.error_list.another_street=true;}
                 if(this.another_zip_code=="")
-                    {isOk =false;this.errors.push("Podaj kod pocztowy");}
+                    {isOk =false;this.errors.push("Podaj kod pocztowy dla dostawy");this.error_list.another_zip_code=true;}
                 else{
                     let params = this.another_zip_code.split("-");
                     if(params.length!=2){
                         isOk=false;
-                        this.errors.push("Nieprawidłowy kod pocztowy");
+                        this.errors.push("Nieprawidłowy kod pocztowy dla dostawy");this.error_list.another_zip_code=true;
                     }
                     else if(params[0].length!=2||params[1].length!=3){
                         isOk=false;
-                        this.errors.push("Nieprawidłowy kod pocztowy");
+                        this.errors.push("Nieprawidłowy kod pocztowy dla dostawy");this.error_list.another_zip_code=true;
                     }
                 }
                 if(this.another_city=="")
-                    {isOk =false;this.errors.push("Podaj miasto");}
+                    {isOk =false;this.errors.push("Podaj miasto dla dostawy");this.error_list.another_city=true;}
                 else if(this.another_city.length>30){
-                    isOk=false; this.errors.push("Za długa nazwa miasta");
+                    isOk=false; this.errors.push("Za długa nazwa miasta dla dostawy");this.error_list.another_city=true;
                 }
-            }else{
+            }
+
                 if(this.country=="")
-                    {isOk =false;this.errors.push("Wybierz kraj");}
-                if(this.street=="")
-                    {isOk =false;this.errors.push("Podaj ulicę według wzorca: ulica,numer domu");}
-                if(this.house_number=="")
-                    {isOk =false;this.errors.push("Podaj numer domu według wzorca: ulica,numer domu");}
+                    {isOk =false;this.errors.push("Wybierz kraj");this.error_list.country=true;}
+                if(this.street==""||this.house_number=="")
+                    {isOk =false;this.errors.push("Podaj ulicę oraz numer domu dla dostawy, według wzorca: ulica,numer domu");this.error_list.street=true;}
                 if(this.zip_code=="")
-                    {isOk =false;this.errors.push("Podaj kod pocztowy");}
-                else{
+                    {isOk =false;this.errors.push("Podaj kod pocztowy");this.error_list.zip_code=true;
+                }else{
                     let params = this.zip_code.split("-");
                     if(params.length!=2){
                         isOk=false;
-                        this.errors.push("Nieprawidłowy kod pocztowy");
+                        this.errors.push("Nieprawidłowy kod pocztowy");this.error_list.zip_code=true;
                     }
                     else if(params[0].length!=2||params[1].length!=3){
-                        isOk=false;this.errors.push("Nieprawidłowy kod pocztowy");
+                        isOk=false;this.errors.push("Nieprawidłowy kod pocztowy");this.error_list.zip_code=true;
                     }
                 }
                 if(this.city=="")
-                    {isOk =false;this.errors.push("Podaj miasto");}
-                else if(this.city.length>30){
-                    isOk=false; this.errors.push("Za długa nazwa miasta");
+                    {isOk =false;this.errors.push("Podaj miasto");this.error_list.city=true;
+                }else if(this.city.length>30){
+                    isOk=false; this.errors.push("Za długa nazwa miasta");this.error_list.city=true;
                 }
-            }
             if(this.name==""){
-                isOk=false; this.errors.push("Podaj imię");
+                isOk=false; this.errors.push("Podaj imię");this.error_list.name=true;
             }else if(this.name.length>40){
-                isOk=false; this.errors.push("Za długie imię");
+                isOk=false; this.errors.push("Za długie imię");this.error_list.name=true;
             }
             if(this.surname==""){
-                isOk=false; this.errors.push("Podaj nazwisko");
+                isOk=false; this.errors.push("Podaj nazwisko");this.error_list.surname=true;
             }else if(this.surname.length>40){
-                isOk=false; this.errors.push("Za długie nazwisko");
+                isOk=false; this.errors.push("Za długie nazwisko");this.error_list.surname=true;
             }
             if(this.phone==""){
-                isOk=false; this.errors.push("Podaj numer telefonu");
+                isOk=false; this.errors.push("Podaj numer telefonu");this.error_list.phone=true;
             }else if(this.phone.length!=9){
-                isOk=false; this.errors.push("Nieprawidłowy numer telefonu");
+                isOk=false; this.errors.push("Nieprawidłowy numer telefonu");this.error_list.phone=true;
             }
             if(this.text.length>250){
-                isOk=false; this.errors.push("Za długi komentarz");
+                isOk=false; this.errors.push("Za długi komentarz");this.error_list.text=true;
             }
 
             return isOk;
       },
 
-        /*wypelnijFormularz(){
+        wypelnijFormularz(){
             this.name = "Adam";
             this.surname = "Nowak";
             this.country = "Polska";
@@ -291,9 +348,10 @@ export default {
             this.phone= "111222333";
             this.statute = true;
             this.decodeAddress();
-            this.payment_type = "PayU";
             this.deliver_type = "Paczkomat";
-      } */
+            this.payment_type = "PayU";
+            this.recaptchaDisabled = false;
+      } 
   },
   computed:{
       chosePayment(){
@@ -308,7 +366,8 @@ export default {
 </script>
 
 <template>
-<!-- <button @click="wypelnijFormularz()" >Wypełnij formularz</button> Usunąć, dodane dla zaoszczędzenia czasu !-->
+<button @click="wypelnijFormularz()" >Wypełnij formularz</button> Usunąć, dodane dla zaoszczędzenia czasu !
+<Transition name="popup">
 <div class="popup" v-if="show_login_form">
     <div class="container">
         <div class="top">
@@ -321,6 +380,8 @@ export default {
         </div>
     </div>
 </div>
+</Transition >
+<Transition name="popup">
 <div class="popup" v-if="show_discount_form">
     <div class="container">
         <div class="top">
@@ -333,6 +394,8 @@ export default {
         </div>
     </div>
 </div>
+</Transition >
+<Transition name="popup">
 <div class="popup" v-if="show_order_popup">
     <div class="container">
         <div class="top">
@@ -352,6 +415,7 @@ export default {
         </div>
     </div>
 </div>
+</Transition >
 <div class="container">
     <div class="box">
         <div class="title-div">
@@ -362,37 +426,42 @@ export default {
             <center>Masz już konto? Kliknij żeby się zalogować.</center>
         </p>
         <p>
-            <input type="checkbox" v-model="create_account"/>Stwórz nowe konto
+            <input type="checkbox" v-model="create_account" />Stwórz nowe konto
         </p>
         <div>
-            <input type="text" placeholder="Login"/>                
-            <input type="password" placeholder="Hasło"/>
-            <input type="password" placeholder="Potwierdź hasło"/>
-            <input type="text" placeholder="Imię*" v-model="name"/>
-            <input type="text" placeholder="Nazwisko*" v-model="surname"/>
+            <Transition name="slide">
+            <div v-if="create_account">
+                <input type="text" :class="{ error: error_list.login}" placeholder="Login" v-model="login"/>                
+                <input type="password" :class="{ error: error_list.password}" v-model="password" placeholder="Hasło"/>
+                <input type="password" :class="{ error: error_list.password}" v-model="repeat_password" placeholder="Potwierdź hasło"/>
+            </div>
+            </Transition>
+            <input type="text" :class="{ error: error_list.name}" placeholder="Imię*" v-model="name"/>
+            <input type="text" :class="{ error: error_list.surname}" placeholder="Nazwisko*" v-model="surname"/>
             <select v-model="country">
                 <option>Polska</option>
                 <option>Niemcy</option>
             </select>
-            <input type="text" placeholder="Ulica,numer domu*" v-model="address" @change="decodeAddress()"/>
+            <input type="text" :class="{ error: error_list.street}" placeholder="Ulica,numer domu*" v-model="address" @change="decodeAddress()"/>
             <div class="post-div">
-            <input type="text" placeholder="Kod pocztowy*" v-model="zip_code"/>
-            <input type="text" placeholder="Miasto*" v-model="city"/> 
+            <input type="text" :class="{ error: error_list.zip_code}" placeholder="Kod pocztowy*" v-model="zip_code"/>
+            <input type="text" :class="{ error: error_list.city}" placeholder="Miasto*" v-model="city"/> 
             </div>
-            <input type="text" placeholder="Telefon*" v-model="phone"/>
+            <input type="text" :class="{ error: error_list.phone}" placeholder="Telefon*" v-model="phone"/>
             <input type="checkbox" v-model="another_location" />Dostawa pod inny adres
+            <Transition name="slide">
             <div v-if="another_location">
                 <select v-model="another_country">
                     <option>Polska</option>
                     <option>Niemcy</option>
                 </select>
-                <input type="text" placeholder="Ulica,numer domu*" v-model="another_address" @change="decodeAddress()"/>
+                <input type="text" :class="{ error: error_list.another_street}" placeholder="Ulica,numer domu*" v-model="another_address" @change="decodeAddress()"/>
                 <div class="post-div">
-                <input type="text" placeholder="Kod pocztowy*" v-model="another_zip_code"/>
-                <input type="text" placeholder="Miasto*" v-model="another_city"/> 
+                <input type="text" :class="{ error: error_list.another_zip_code}" placeholder="Kod pocztowy*" v-model="another_zip_code"/>
+                <input type="text" :class="{ error: error_list.another_city}" placeholder="Miasto*" v-model="another_city"/> 
                 </div>
             </div>
-            
+            </Transition>
         </div>
     </div>
     <div class="box">
@@ -432,21 +501,27 @@ export default {
                 <p><span><span class="payment">aaa</span></span>3. METODA PŁATNOŚĆI</p>
             </div>
             <div>
+                <Transition name="slide">
                 <p v-show="deliver_type!='Kurier za pobraniem'">
                     <input type="radio" value="PayU" v-model="payment_type" />
                     <span><span class="payu">aaa</span></span>
                     PayU
                 </p>
-                <p v-show="deliver_type=='Kurier za pobraniem'||deliver_type==''">
-                    <input type="radio"  value="Przy odbiorze" v-model="payment_type"/>
-                    <span><span class="cash">aaa</span></span>
-                    Płatność przy odbiorze
-                </p>
+                </Transition>
+                <Transition name="slide">
                 <p v-show="deliver_type!='Kurier za pobraniem'">
                     <input type="radio"  value="Przelew bakowy" v-model="payment_type"/>
                     <span><span class="transfer">aaa</span></span>
                     Przelew bankowy - zwykły
                 </p>
+                </Transition>
+                <Transition name="slide">
+                <p v-show="deliver_type=='Kurier za pobraniem'||deliver_type==''">
+                    <input type="radio"  value="Przy odbiorze" v-model="payment_type"/>
+                    <span><span class="cash">aaa</span></span>
+                    Płatność przy odbiorze
+                </p>
+                </Transition>
             </div>
             <button class="btn-code btn" @click="show_discount_form=true">
                     Dodaj kod rabatowy
@@ -515,11 +590,15 @@ export default {
         <button class="btn-accept btn" @click="trySendOrder()" >
                 POTWIERDŹ ZAKUP
         </button>
-        <ul class="error-list">
+        <Transition name="slide">
+        <div v-if="errors.length>0">
+            <ul class="error-list" >
             <li v-for="error in errors" v-bind:key="error">
                 {{ error }}
             </li>
         </ul>
+        </div>
+        </Transition>
     </div>
 </div>
 </template>
@@ -537,6 +616,29 @@ $border-round : 7px;
         margin:0px;
         box-sizing:border-box;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .error{
+        color: $red-light;
+        font-weight: bold;
+    }
+
+    .popup-enter-active,
+    .popup-leave-active {
+    transition: opacity 0.5s ease;
+    }
+    .popup-enter-from,
+    .popup-leave-to {
+    opacity: 0;
+    }
+    .slide-enter-active,
+    .slide-leave-active {
+     transition: all 0.3s ease-out;
+    }
+
+    .slide-enter-from,
+    .slide-leave-to {
+     transform: translateX(20px);
+     opacity: 0;
     }
     .popup{
         position: fixed;
