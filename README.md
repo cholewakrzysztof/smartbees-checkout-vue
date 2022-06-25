@@ -7,33 +7,36 @@
 3. npm install 
 4. npm run dev
 
-TESTY JEDNOSTKOWE PHPUNIT
+[TESTY JEDNOSTKOWE PHPUNIT]
 1. git clone https://github.com/cholewakrzysztof/smart-bees-checkout-phpunit-poprawione
 2. do tego samego folderu skopiować plik "send_order.php"
 3. Włączyć Git Bash
 4. cd smart-bees-checkout-phpunit-poprawione
 5. vendor/bin/phpunit
 
-WSPÓŁPRACA Z BAZĄ DANYCH
+[WSPÓŁPRACA Z BAZĄ DANYCH]
 1. zaimportować bazę checkout.sql z nazwą "checkout"
 2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostępne pod ścieżkami:
 3. "http://localhost/send_order.php"  
 4. "http://localhost/discount_check.php" 
 
+## Inne iformacje
 Domeny reCAPTCHA:
-    smartbees-zadanie.local
-    localhost
-Klucz reCAPTCHA:
-    6Lfxfl0gAAAAAOIupaOkUkeTBFhY2qGXxyv8MVsJ
+1. smartbees-zadanie.local
+2. localhost
 
-W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
-W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
+Klucz reCAPTCHA:
+1. 6Lfxfl0gAAAAAOIupaOkUkeTBFhY2qGXxyv8MVsJ
+
+## Wskazówki
+1. W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
+2. W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
 
 Kody rabatowe (Wpływają jedynie na cenę produktu):
-    Aktywny: AB-123-456
-    Nieaktywny: CD-789-123
-
-Wykorzystane technologie:
+1. Aktywny: AB-123-456
+2. Nieaktywny: CD-789-123
+ 
+## Wykorzystane technologie
 1. Vue.js 3
 2. Baza danych MariaDB
 3. PHP 7.3.30
