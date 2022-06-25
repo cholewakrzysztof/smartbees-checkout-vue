@@ -16,9 +16,9 @@ TESTY JEDNOSTKOWE PHPUNIT
 
 WSPÓŁPRACA Z BAZĄ DANYCH
 1. zaimportować bazę checkout.sql z nazwą "checkout"
-2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostęne pod ścieżkami:
-    -"http://localhost/send_order.php"  
-    -"http://localhost/discount_check.php" 
+2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostępne pod ścieżkami:
+3. "http://localhost/send_order.php"  
+4. "http://localhost/discount_check.php" 
 
 Domeny reCAPTCHA:
     smartbees-zadanie.local
