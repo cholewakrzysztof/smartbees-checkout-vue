@@ -10,7 +10,7 @@
 [TESTY JEDNOSTKOWE PHPUNIT]
 1. git clone https://github.com/cholewakrzysztof/smart-bees-checkout-phpunit-poprawione
 2. do tego samego folderu skopiować plik "send_order.php"
-3. Włączyć Git Bash
+3. włączyć Git Bash
 4. cd smart-bees-checkout-phpunit-poprawione
 5. vendor/bin/phpunit
 
@@ -31,14 +31,15 @@ Klucz reCAPTCHA:
 ## Wskazówki
 1. W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
 2. W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
-3. Kody rabatowe 
+
+[Kody rabatowe] 
  1. Aktywny: AB-123-456
  2. Nieaktywny: CD-789-123
  
- Inne iformacje
+[Wykorzystane technologie]
 
--Vue.js 3
--Baza danych MariaDB
--PHP 7.3.30
--reCAPTCHA Google v3
--PHPUnit 9
+1. Vue.js 3
+2. Baza danych MariaDB
+3. PHP 7.3.30
+4. reCAPTCHA Google v3
+5. PHPUnit 9
