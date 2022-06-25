@@ -31,14 +31,14 @@ Klucz reCAPTCHA:
 ## Wskazówki
 1. W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
 2. W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
-
-Kody rabatowe (Wpływają jedynie na cenę produktu):
-1. Aktywny: AB-123-456
-2. Nieaktywny: CD-789-123
+3. Kody rabatowe 
+ 1. Aktywny: AB-123-456
+ 2. Nieaktywny: CD-789-123
  
-## Wykorzystane technologie
-1. Vue.js 3
-2. Baza danych MariaDB
-3. PHP 7.3.30
-4. reCAPTCHA Google v3
-5. PHPUnit 9
+ Inne iformacje
+
+-Vue.js 3
+-Baza danych MariaDB
+-PHP 7.3.30
+-reCAPTCHA Google v3
+-PHPUnit 9
