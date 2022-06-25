@@ -338,20 +338,20 @@ export default {
             return isOk;
       },
 
-        wypelnijFormularz(){
-            this.name = "Adam";
-            this.surname = "Nowak";
-            this.country = "Polska";
-            this.address = "Rolna,35";
-            this.zip_code = "43-124";
-            this.city = "Nowa wieś";
-            this.phone= "111222333";
-            this.statute = true;
-            this.decodeAddress();
-            this.deliver_type = "Paczkomat";
-            this.payment_type = "PayU";
-            this.recaptchaDisabled = false;
-      } 
+    //     wypelnijFormularz(){
+    //         this.name = "Adam";
+    //         this.surname = "Nowak";
+    //         this.country = "Polska";
+    //         this.address = "Rolna,35";
+    //         this.zip_code = "43-124";
+    //         this.city = "Nowa wieś";
+    //         this.phone= "111222333";
+    //         this.statute = true;
+    //         this.decodeAddress();
+    //         this.deliver_type = "Paczkomat";
+    //         this.payment_type = "PayU";
+    //         this.recaptchaDisabled = false;
+    //   } 
   },
   computed:{
       chosePayment(){
@@ -366,7 +366,7 @@ export default {
 </script>
 
 <template>
-<button @click="wypelnijFormularz()" >Wypełnij formularz</button> Usunąć, dodane dla zaoszczędzenia czasu !
+<!-- <button @click="wypelnijFormularz()" >Wypełnij formularz</button> Usunąć, dodane dla zaoszczędzenia czasu ! -->
 <Transition name="popup">
 <div class="popup" v-if="show_login_form">
     <div class="container">
