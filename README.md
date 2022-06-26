@@ -19,6 +19,7 @@
 2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostępne pod ścieżkami:
 3. "http://localhost/send_order.php"  
 4. "http://localhost/discount_check.php" 
+5. włączyć serwer MySQL
 
 ## Inne iformacje
 Domeny reCAPTCHA:
