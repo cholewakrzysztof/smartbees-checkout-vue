@@ -9,7 +9,7 @@
 
 [TESTY JEDNOSTKOWE PHPUNIT]
 1. git clone https://github.com/cholewakrzysztof/smart-bees-checkout-phpunit-poprawione
-2. do tego samego folderu skopiować plik "send_order.php"
+2. do folderu nadrzędnego skopiować plik "send_order.php"
 3. włączyć Git Bash
 4. cd smart-bees-checkout-phpunit-poprawione
 5. vendor/bin/phpunit
