@@ -1,35 +1,45 @@
-## Project Setup
+## Setup
 
 
-VUE
-1. npm install 
-2. npm run dev
+[VUE]
+1. git clone https://github.com/cholewakrzysztof/smartbees-checkout-vue
+2. cd smartbees-checkout-vue
+3. npm install 
+4. npm run dev
 
-TESTY JEDNOSTKOWE PHPUNIT
-1. Włączyć Git Bash
-2. Prejść do folderu ze sklonowanym repozytorium "smart-bees-checkout-phpunit-poprawione"
-3. komenda: vendor/bin/phpunit
+[TESTY JEDNOSTKOWE PHPUNIT]
+1. git clone https://github.com/cholewakrzysztof/smartbees-checkout-phpunit
+2. do folderu nadrzędnego skopiować plik "send_order.php" lub zmienić tests/FormValidationTest.php linia :22
+3. włączyć Git Bash
+4. cd smartbees-checkout-phpunit
+5. vendor/bin/phpunit
 
-WSPÓŁPRACA Z BAZĄ DANYCH
-1. zaimportować bazę checkout.sql z nazwą "checkout"
-2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostęne pod ścieżkami:
-    -"http://localhost/send_order.php"  
-    -"http://localhost/discount_check.php" 
+[WSPÓŁPRACA Z BAZĄ DANYCH]
+1. stworzyć nową bazę danych o nzawie "checkout" system kodowania utf8_general_ci
+1. zaimportować bazę checkout.sql
+2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostępne pod ścieżkami lub zmienić w kodzie:
+3. "http://localhost/send_order.php" lub src/components/CheckOut.vue linia :198
+5. "http://localhost/discount_check.php"  lub src/components/CheckOut.vue linia :150
+6. włączyć serwer MySQL
 
+## Inne informacje
 Domeny reCAPTCHA:
-    smartbees-zadanie.local
-    localhost
+1. smartbees-zadanie.local
+2. localhost
+
 Klucz reCAPTCHA:
-    6Lfxfl0gAAAAAOIupaOkUkeTBFhY2qGXxyv8MVsJ
+1. 6Lfxfl0gAAAAAOIupaOkUkeTBFhY2qGXxyv8MVsJ
 
-W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
-W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
+## Wskazówki
+1. W pliku src/components/CheckOut.vue linia:341 została zakomentowana metoda wypełniająca formularz przykładowymi danymi
+2. W pliku src/components/CheckOut.vue linia:369 został zakomentowany przycisk do aktywacji metody wypełniającej formularz i akceptującej reCaptcha
 
-Kody rabatowe (Wpływają jedynie na cenę produktu):
-    Aktywny: AB-123-456
-    Nieaktywny: CD-789-123
+[Kody rabatowe] 
+ 1. Aktywny: AB-123-456
+ 2. Nieaktywny: CD-789-123
+ 
+[Wykorzystane technologie]
 
-Wykorzystane technologie:
 1. Vue.js 3
 2. Baza danych MariaDB
 3. PHP 7.3.30
