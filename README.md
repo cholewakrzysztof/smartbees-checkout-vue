@@ -15,7 +15,8 @@
 5. vendor/bin/phpunit
 
 [WSPÓŁPRACA Z BAZĄ DANYCH]
-1. zaimportować bazę checkout.sql z nazwą "checkout"
+1. stworzyć nową bazę danych o nzawie "checkout" system kodowania utf8_general_ci
+1. zaimportować bazę checkout.sql
 2. wrzućić pliki "discount_check.php" oraz "send_order.php" tak, aby były dostępne pod ścieżkami:
 3. "http://localhost/send_order.php"  
 4. "http://localhost/discount_check.php" 
