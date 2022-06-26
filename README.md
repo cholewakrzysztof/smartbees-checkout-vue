@@ -31,8 +31,8 @@ Klucz reCAPTCHA:
 1. 6Lfxfl0gAAAAAOIupaOkUkeTBFhY2qGXxyv8MVsJ
 
 ## Wskazówki
-1. W sekcji <script> -> methods,na samym końcu została zakomentowana metoda wypełniająca formularz przykładowymi danymi
-2. W pierwszej linii <template> został zakomentowany przycisk do aktywacji metody wypełniającej formularz
+1. W pliku src/components/CheckOut.vue linia:341 została zakomentowana metoda wypełniająca formularz przykładowymi danymi
+2. W pliku src/components/CheckOut.vue linia:369 został zakomentowany przycisk do aktywacji metody wypełniającej formularz i akceptującej reCaptcha
 
 [Kody rabatowe] 
  1. Aktywny: AB-123-456
