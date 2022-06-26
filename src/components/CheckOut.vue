@@ -118,20 +118,20 @@ export default {
         this.street = "";
         this.house_number = "";
 
-          if(this.another_location){
-              let params = this.another_address.split(",");
-              if(params.length==2){
-                  this.another_street = params[0];
-                  this.another_house_number = params[1];
-              }
-          }else{
-              let params = this.address.split(",");
-              if(params.length==2){
-                  this.street = params[0];
-                  this.house_number = params[1];
-              }
-          }
+        let params = this.another_address.split(",");
+            if(params.length==2){
+                this.another_street = params[0];
+                this.another_house_number = params[1];
+            }
+        params = this.address.split(",");
+            if(params.length==2){
+                this.street = params[0];
+                this.house_number = params[1];
+            }
       },
+           setPhone(){
+         this.phone = this.phone.replace(" ","");
+     },
       trySendOrder(){
           if(this.checkForm()){
               this.sendOrder();
@@ -360,7 +360,7 @@ export default {
           this.countTotal();
           return this.total;
       },
-     
+
   },
 }
 </script>
@@ -447,7 +447,7 @@ export default {
             <input type="text" :class="{ error: error_list.zip_code}" placeholder="Kod pocztowy*" v-model="zip_code"/>
             <input type="text" :class="{ error: error_list.city}" placeholder="Miasto*" v-model="city"/> 
             </div>
-            <input type="text" :class="{ error: error_list.phone}" placeholder="Telefon*" v-model="phone"/>
+            <input type="text" :class="{ error: error_list.phone}" placeholder="Telefon*" v-model="phone" @keyup="setPhone()"/>
             <input type="checkbox" v-model="another_location" />Dostawa pod inny adres
             <Transition name="slide">
             <div v-if="another_location">
