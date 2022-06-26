@@ -22,7 +22,7 @@
 4. "http://localhost/discount_check.php" 
 5. włączyć serwer MySQL
 
-## Inne iformacje
+## Inne informacje
 Domeny reCAPTCHA:
 1. smartbees-zadanie.local
 2. localhost
