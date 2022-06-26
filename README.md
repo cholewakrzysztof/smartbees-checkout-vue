@@ -10,7 +10,7 @@
 [TESTY JEDNOSTKOWE PHPUNIT]
 1. git clone https://github.com/cholewakrzysztof/smartbees-checkout-phpunit
 2. do folderu nadrzędnego skopiować plik "send_order.php" lub zmienić tests/FormValidationTest.php linia :22
-3. włączyć Git Bash
+3. włączyć Git Bash/PowerShell
 4. cd smartbees-checkout-phpunit
 5. vendor/bin/phpunit
 
